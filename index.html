@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>Markdown Previewer by Leonardo Gama</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <script src="/js/marked.js"></script>
+
+    <script>
+    console.log(marked.parse(("Hello World")))
+
+    function updatePreview() {
+        let previewElement = document.getElementById("preview")
+        let editorValue = document.getElementById('editor').value
+        let markedUpHTML = marked.parse(editorValue)
+        previewElement.innerHTML = markedUpHTML
+    }
+
+    function setDefault() {
+        let defaultText = `\
+# Markdown Previewer
+## a markdown previewer
+        
+[Programming a markdown previewer] (http://leogama09.github.io/markdown-previewer)
+        
+<dl>
+<dt>Definition list</dt>
+<dd>Is something people use sometimes.</dd>
+
+<dt>Markdown in HTML</dt>
+<dd>Does *not* work **very** well. Use HTML <em>tags</em>.</dd>
+</dl>
+
+\`\`\`
+function exampleOf() {
+    return multiLineCodeBlock
+}
+\`\`\`
+
+\`This is an example of inline code\`
+
+- This
+- is
+- an
+- example
+- of
+- list
+- items
+
+> This is an example of block quote
+
+**Bolded Text**
+
+![IMAGE ALT TEXT HERE](https://cdn.pocket-lint.com/r/s/970x/assets/images/159088-games-review-hands-on-elden-ring-review-image1-8nisaeviok.jpg)
+`;
+        let editorField = document.getElementById('editor')
+        let previewElement = document.getElementById("preview")
+        editorField.value = defaultText
+        previewElement.innerHTML = marked.parse(defaultText)
+    }
+    </script>
+</head>
+  <body onload="setDefault()">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col text-center text-white bg-primary my-3">
+                <h1>Markdown Previewer by Leonardo Gama</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6 bg-success d-flex flex-column">
+                <h2 class="text-white text-center my-3">Editor</h2>
+                <div class="form-group flex-grow-1 d-flex flex-column">
+                <textarea id="editor" onkeyup="updatePreview()" class="form-control flex-grow-1"></textarea>
+             </div>
+            </div>
+            <div class="col-6 bg-danger">
+                <h2 class="text-white text-center my-3">Preview</h2>
+                <div id="preview"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>
+    <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+</body>
+</html>
